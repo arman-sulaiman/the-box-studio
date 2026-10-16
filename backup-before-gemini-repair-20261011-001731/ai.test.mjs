@@ -1,0 +1,7 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import sharp from 'sharp'
+import {mkdtemp,rm} from 'node:fs/promises'
+const temp=await mkdtemp('/tmp/box-mask-test-');process.env.DATA_DIR=temp
+const {applyMasks,geminiMasks}=await import('../server/ai.mjs')
+test('AI mask pipeline preserves pixels and creates real transparent PNG',async()=>{const photo=await sharp({create:{width:10,height:10,channels:4,background:'#ff0000'}}).png().toBuffer(),mask=await sharp({create:{width:2,height:2,channels:3,background:'#ffffff'}}).png().toBuffer();const response=[{box_2d:[200,200,800,800],mask:mask.toString('base64'),label:'person'}];const result=await geminiMasks(photo,async(url,options)=>{assert.match(url,/generateContent$/);const req=JSON.parse(options.body);assert.equal(req.generationConfig.thinkingConfig.thinkingBudget,0);return {ok:true,json:async()=>({candidates:[{content:{parts:[{text:JSON.stringify(response)}]}}]})}});const output=await applyMasks(photo,result);const {data,info}=await sharp(output).raw().toBuffer({resolveWithObject:true});assert.equal(info.channels,4);assert.equal(data[3],0);assert.equal(data[(5*10+5)*4],255);assert.equal(data[(5*10+5)*4+3],255);await assert.rejects(applyMasks(photo,[{box_2d:[-1,0,1000,1000],mask:'bad'}]));await assert.rejects(geminiMasks(photo,async()=>({ok:false,status:429})),/quota/);await rm(temp,{recursive:true,force:true})})

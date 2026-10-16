@@ -1,0 +1,53 @@
+{
+  "name": "the-box-studio",
+  "private": true,
+  "version": "10.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env server/index.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node --env-file-if-exists=.env server/index.mjs",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "setup": "node --env-file-if-exists=.env server/setup.mjs",
+    "admin:reset": "node --env-file-if-exists=.env server/setup.mjs --reset",
+    "backup": "node --env-file-if-exists=.env server/backup.mjs",
+    "browser:install": "playwright install chromium",
+    "test": "node --test tests/*.test.mjs",
+    "fonts:install": "node scripts/install-fonts.mjs",
+    "ai:setup": "node --env-file-if-exists=.env scripts/setup-ai.mjs",
+    "ai:check": "node --env-file-if-exists=.env scripts/check-ai.mjs"
+  },
+  "dependencies": {
+    "@fontsource/anek-bangla": "5.3.0",
+    "@fontsource/atma": "5.3.0",
+    "@fontsource/baloo-da-2": "5.3.0",
+    "@fontsource/bebas-neue": "5.3.0",
+    "@fontsource/dm-sans": "5.3.0",
+    "@fontsource/galada": "5.3.0",
+    "@fontsource/hind-siliguri": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/manrope": "5.3.0",
+    "@fontsource/mina": "5.3.0",
+    "@fontsource/montserrat": "5.3.0",
+    "@fontsource/noto-sans-bengali": "5.3.0",
+    "@fontsource/noto-serif-bengali": "5.3.0",
+    "@fontsource/oswald": "5.3.0",
+    "@fontsource/playfair-display": "5.3.0",
+    "@fontsource/poppins": "5.3.0",
+    "@fontsource/space-grotesk": "5.3.0",
+    "@fontsource/tiro-bangla": "5.3.0",
+    "@vitejs/plugin-react": "4.5.2",
+    "html-to-image": "1.11.13",
+    "playwright": "1.62.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "sharp": "0.35.5",
+    "vite": "6.3.6"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

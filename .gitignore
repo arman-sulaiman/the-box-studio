@@ -1,0 +1,10 @@
+node_modules/
+.env
+/data/
+/backups/
+*.log
+
+.ai-venv/
+custom-fonts/*.ttf
+custom-fonts/*.otf
+custom-fonts/manifest.json

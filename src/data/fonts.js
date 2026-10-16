@@ -1,0 +1,5 @@
+import {customFonts} from './custom-fonts.js'
+export const fonts = [
+ ['Noto Sans Bengali','বাংলা · Noto Sans Bengali'],['Hind Siliguri','বাংলা · Hind Siliguri'],['Noto Serif Bengali','বাংলা · Noto Serif Bengali'],['Tiro Bangla','বাংলা · Tiro Bangla'],['Baloo Da 2','বাংলা · Baloo Da 2'],['Anek Bangla','বাংলা · Anek Bangla'],['Mina','বাংলা · Mina'],['Galada','বাংলা · Galada'],['Inter','English · Inter'],['Montserrat','English · Montserrat'],['Poppins','English · Poppins'],['Playfair Display','English · Playfair Display'],['Oswald','English · Oswald'],['Atma','বাংলা · Atma'],['DM Sans','English · DM Sans'],['Manrope','English · Manrope'],['Space Grotesk','English · Space Grotesk'],['Bebas Neue','English · Bebas Neue']
+].map(([name,label])=>({name,label,group:label.startsWith('English')?'English':'Bangla',value:`'${name}', 'Noto Sans Bengali', sans-serif`})).concat(customFonts)
+export const fontSections = [['headline','Headline / Speech'],['subheadline','Subheading'],['kicker','Topic / Kicker'],['date','Date'],['source','Source'],['name','Author name'],['role','Designation']]
